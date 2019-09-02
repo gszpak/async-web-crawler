@@ -1,4 +1,4 @@
-package com.github.gszpak.crawler;
+package com.github.gszpak.crawler.async;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;

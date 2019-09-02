@@ -1,4 +1,4 @@
-package com.github.gszpak.crawler;
+package com.github.gszpak.crawler.async;
 
 import org.asynchttpclient.Response;
 import org.jsoup.Jsoup;
