@@ -4,7 +4,11 @@ import org.apache.commons.cli.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.util.List;
 
 public class Main {
 
@@ -30,8 +34,10 @@ public class Main {
         String inputFilePath = cmd.getOptionValue("input");
         String outputFilePath = cmd.getOptionValue("output");
         CrawlerRunner runner = new CrawlerRunner(outputFilePath);
+        List<String> urls = Files.readAllLines(
+                new File(inputFilePath).toPath(), Charset.defaultCharset());
         runner
-                .fetchAndWriteForwardUrls(inputFilePath)
+                .fetchAndWriteForwardUrls(urls)
                 .exceptionally(e -> {
                     LOGGER.info("Error while fetching URLs: {}", e.getMessage());
                     return null;

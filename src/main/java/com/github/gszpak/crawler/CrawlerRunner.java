@@ -31,9 +31,7 @@ public class CrawlerRunner implements Closeable {
         return new AsyncWriter(writerExecutor, outputFile);
     }
 
-    public CompletionStage<Void> fetchAndWriteForwardUrls(String inputFilePath) throws IOException {
-        List<String> urls = Files.readAllLines(
-                new File(inputFilePath).toPath(), Charset.defaultCharset());
+    public CompletionStage<Void> fetchAndWriteForwardUrls(List<String> urls) {
         LOGGER.info("Fetching sub-urls for {} urls", urls.size());
         CompletableFuture[] stages = urls
                 .stream()
